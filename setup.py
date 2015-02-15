@@ -1,16 +1,17 @@
 from setuptools import setup
 
 setup(
-    name='wtforms-recaptcha',
-    version=__import__('wtfrecaptcha').__version__,
-    url='http://bitbucket.org/excieve/wtforms-recaptcha',
+    name='wtforms-nocaptcha',
+    version=__import__('wtfnocaptcha').__version__,
+    url='https://github.com/evrom/wtforms-nocaptcha/',
     license='BSD',
-    author='Artem Gluvchynsky',
-    author_email='excieve@gmail.com',
-    description='Custom WTForms field that handles reCaptcha display and validation',
+    author='Evan Roman',
+    author_email='evanroman1@gmail.com',
+    description='Custom WTForms field that handles No Captcha reCaptcha '
+    'display and validation',
     long_description=open('README.rst').read(),
     platforms='any',
-    packages=['wtfrecaptcha'],
+    packages=['wtfnocaptcha'],
     install_requires=['WTForms>=0.6.1'],
     test_suite='nose.collector',
     tests_require=['nose'],
