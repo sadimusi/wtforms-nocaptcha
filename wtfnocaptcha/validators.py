@@ -40,8 +40,10 @@ class NoCaptcha(object):
             install_opener(opener)
 
         try:
-            response = urlopen('http://www.google.com/recaptcha/api/verify',
-                               data=urlencode(params).encode('utf-8'))
+            response = urlopen(
+                "https://www.google.com/recaptcha/api/siteverify",
+                data=urlencode(params).encode('utf-8')
+            )
             data = response.read().decode('utf-8').splitlines()
             response.close()
         except Exception as e:
@@ -58,12 +60,12 @@ class NoCaptcha(object):
         # Construct params assuming all the data is present
         params = (('privatekey', field.private_key),
                   ('remoteip', field.ip_address),
-                  ('challenge', field.challenge),
                   ('response', field.data))
 
         data = self._call_verify(params, field.http_proxy)
         if data[0] == 'false':
-            # Show only incorrect solution to the user else show default message
+            # Show only incorrect solution to the user
+            # otherwise show default message
             if data[1] == 'incorrect-captcha-sol':
                 raise ValidationError(field.gettext(self.errors[data[1]]))
             else:
